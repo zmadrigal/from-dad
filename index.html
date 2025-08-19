@@ -9,381 +9,139 @@
     <link rel="apple-touch-icon" href="icons/icon-192.png" />
     <link rel="manifest" href="manifest.json" />
     <style>
-      html, body {
-        height: 100%;
-        margin: 0;
-        overflow: hidden;
-        font-family: -apple-system, system-ui, Arial, sans-serif;
-      }
-      /* Layout */
-      #stage {
-        position: relative;
-        width: 100%;
-        height: 100%;
-      }
-      /* Sky */
-      #sky {
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(to top, #87ceeb 0%, #b0e0e6 100%);
-        z-index: 0;
-      }
-      /* Rainbow */
-      #rainbow {
-        position: absolute;
-        left: 50%;
-        bottom: -35%;
-        width: 220%;
-        height: 220%;
-        transform: translateX(-50%);
-        background:
-          radial-gradient(circle at bottom,
-            red 0 9%, orange 9% 18%, yellow 18% 27%, green 27% 36%,
-            blue 36% 45%, indigo 45% 54%, violet 54% 63%, transparent 63%);
-        z-index: 1;
-        opacity: 0.9;
-        pointer-events: none;
-      }
-      /* Clouds */
-      .cloud {
-        --size: 220px;
-        position: absolute;
-        top: 10%;
-        width: var(--size);
-        height: calc(var(--size) * 0.6);
-        background: #fff;
-        border-radius: 999px;
-        filter: drop-shadow(0 8px 10px rgba(0,0,0,0.08));
-        animation: drift linear infinite;
-        z-index: 2;
-        opacity: 0.9;
-      }
-      .cloud::before, .cloud::after {
-        content: "";
-        position: absolute;
-        background: #fff;
-        border-radius: 50%;
-      }
-      .cloud::before {
-        width: 60%;
-        height: 100%;
-        left: -10%;
-        top: -35%;
-      }
-      .cloud::after {
-        width: 55%;
-        height: 90%;
-        right: -8%;
-        top: -25%;
-      }
-      @keyframes drift {
-        from { transform: translateX(-30vw); }
-        to   { transform: translateX(130vw); }
-      }
+      html, body { height:100%; margin:0; overflow:hidden; font-family:-apple-system, system-ui, Arial, sans-serif; }
+      #stage { position:relative; width:100%; height:100%; }
+      #sky { position:absolute; inset:0; background:linear-gradient(to top,#87ceeb 0%,#b0e0e6 100%); z-index:0; }
+      #rainbow { position:absolute; left:50%; bottom:-35%; width:220%; height:220%; transform:translateX(-50%);
+        background:radial-gradient(circle at bottom,
+          red 0 9%, orange 9% 18%, yellow 18% 27%, green 27% 36%,
+          blue 36% 45%, indigo 45% 54%, violet 54% 63%, transparent 63%);
+        z-index:1; opacity:.9; pointer-events:none; }
+      .cloud { --size:220px; position:absolute; top:10%; width:var(--size); height:calc(var(--size)*.6); background:#fff; border-radius:999px;
+        filter:drop-shadow(0 8px 10px rgba(0,0,0,.08)); animation:drift linear infinite; z-index:2; opacity:.9; }
+      .cloud::before,.cloud::after{content:""; position:absolute; background:#fff; border-radius:50%;}
+      .cloud::before{width:60%; height:100%; left:-10%; top:-35%;}
+      .cloud::after{width:55%; height:90%; right:-8%; top:-25%;}
+      @keyframes drift { from{transform:translateX(-30vw);} to{transform:translateX(130vw);} }
 
-      /* Hills */
-      #hills {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 42%;
-        background:
-          radial-gradient(circle at 18% 110%, #3cb371 30%, transparent 31%),
-          radial-gradient(circle at 50% 110%, #2e8b57 30%, transparent 31%),
-          radial-gradient(circle at 82% 108%, #3aa35e 30%, transparent 31%),
-          linear-gradient(to top, #228b22 60%, transparent 61%);
-        background-repeat: no-repeat;
-        z-index: 3;
-      }
+      #hills { position:absolute; bottom:0; left:0; width:100%; height:42%;
+        background: radial-gradient(circle at 18% 110%, #3cb371 30%, transparent 31%),
+                   radial-gradient(circle at 50% 110%, #2e8b57 30%, transparent 31%),
+                   radial-gradient(circle at 82% 108%, #3aa35e 30%, transparent 31%),
+                   linear-gradient(to top, #228b22 60%, transparent 61%);
+        background-repeat:no-repeat; z-index:3; }
 
-      /* Sun container */
-      #sun {
-        position: absolute;
-        top: 42px;
-        right: 42px;
-        width: 150px;
-        height: 150px;
-        z-index: 4;
-        animation: bob 4s ease-in-out infinite;
-      }
-      @keyframes bob {
-        0%,100% { transform: translateY(0); }
-        50%     { transform: translateY(6px); }
-      }
+      #sun { position:absolute; top:42px; right:42px; width:150px; height:150px; z-index:4; animation:bob 4s ease-in-out infinite; }
+      @keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+      #sun .disc { position:absolute; inset:0; background:radial-gradient(circle at 30% 30%,#fff9c4,#ffd33d 70%,#f5b700 100%); border-radius:50%;
+        box-shadow:0 0 50px 15px rgba(255,211,61,.55), 0 0 120px 30px rgba(255,211,61,.25); }
+      #sun .ray { position:absolute; left:50%; top:50%; width:6px; height:110px;
+        background:linear-gradient(to bottom, rgba(255,223,0,.9), rgba(255,223,0,0)); transform-origin:50% 10px; border-radius:3px; opacity:.9; }
+      #sun .r1{transform:translate(-50%,-50%) rotate(0deg);}   #sun .r2{transform:translate(-50%,-50%) rotate(30deg);}
+      #sun .r3{transform:translate(-50%,-50%) rotate(60deg);}  #sun .r4{transform:translate(-50%,-50%) rotate(90deg);}
+      #sun .r5{transform:translate(-50%,-50%) rotate(120deg);} #sun .r6{transform:translate(-50%,-50%) rotate(150deg);}
+      #sun .r7{transform:translate(-50%,-50%) rotate(180deg);} #sun .r8{transform:translate(-50%,-50%) rotate(210deg);}
+      #sun .r9{transform:translate(-50%,-50%) rotate(240deg);} #sun .r10{transform:translate(-50%,-50%) rotate(270deg);}
+      #sun .r11{transform:translate(-50%,-50%) rotate(300deg);}#sun .r12{transform:translate(-50%,-50%) rotate(330deg);}
 
-      /* Sun body */
-      #sun .disc {
-        position: absolute;
-        inset: 0;
-        background: radial-gradient(circle at 30% 30%, #fff9c4, #ffd33d 70%, #f5b700 100%);
-        border-radius: 50%;
-        box-shadow:
-          0 0 50px 15px rgba(255, 211, 61, 0.55),
-          0 0 120px 30px rgba(255, 211, 61, 0.25);
-      }
-      /* Sun rays */
-      #sun .ray {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        width: 6px;
-        height: 110px;
-        background: linear-gradient(to bottom, rgba(255,223,0,0.9), rgba(255,223,0,0));
-        transform-origin: 50% 10px;
-        border-radius: 3px;
-        opacity: 0.9;
-      }
-      /* 12 rays around */
-      /* Create via CSS variables */
-      #sun .r1  { transform: translate(-50%, -50%) rotate(  0deg); }
-      #sun .r2  { transform: translate(-50%, -50%) rotate( 30deg); }
-      #sun .r3  { transform: translate(-50%, -50%) rotate( 60deg); }
-      #sun .r4  { transform: translate(-50%, -50%) rotate( 90deg); }
-      #sun .r5  { transform: translate(-50%, -50%) rotate(120deg); }
-      #sun .r6  { transform: translate(-50%, -50%) rotate(150deg); }
-      #sun .r7  { transform: translate(-50%, -50%) rotate(180deg); }
-      #sun .r8  { transform: translate(-50%, -50%) rotate(210deg); }
-      #sun .r9  { transform: translate(-50%, -50%) rotate(240deg); }
-      #sun .r10 { transform: translate(-50%, -50%) rotate(270deg); }
-      #sun .r11 { transform: translate(-50%, -50%) rotate(300deg); }
-      #sun .r12 { transform: translate(-50%, -50%) rotate(330deg); }
+      #sun .eyes { position:absolute; left:50%; top:45%; width:90px; height:26px; transform:translate(-50%,-50%);
+        display:flex; justify-content:space-between; align-items:center; }
+      .eye { width:22px; height:22px; background:#2d2d2d; border-radius:50%; position:relative; overflow:hidden; animation:blink 5s infinite; }
+      .eye::after{content:""; position:absolute; left:6px; top:5px; width:6px; height:6px; background:rgba(255,255,255,.8); border-radius:50%;}
+      @keyframes blink { 0%,92%,100%{transform:scaleY(1)} 95%{transform:scaleY(.1)} }
+      .mouth { position:absolute; left:50%; top:64%; width:70px; height:40px; transform:translate(-50%,-50%);
+        border-bottom:6px solid #2d2d2d; border-radius:0 0 60px 60px; }
+      .cheek{ position:absolute; top:60%; width:22px; height:14px; background:rgba(255,105,97,.35); filter:blur(.5px); border-radius:50%; animation:puff 3s ease-in-out infinite; }
+      .cheek.left{ left:calc(50% - 55px);} .cheek.right{ left:calc(50% + 33px);}
+      @keyframes puff{0%,100%{transform:scale(1);opacity:.9}50%{transform:scale(1.15);opacity:.7}}
 
-      /* Sun face */
-      #sun .eyes {
-        position: absolute;
-        left: 50%;
-        top: 45%;
-        width: 90px;
-        height: 26px;
-        transform: translate(-50%, -50%);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-      .eye {
-        width: 22px;
-        height: 22px;
-        background: #2d2d2d;
-        border-radius: 50%;
-        position: relative;
-        overflow: hidden;
-        animation: blink 5s infinite;
-      }
-      /* Little eye highlight */
-      .eye::after {
-        content: "";
-        position: absolute;
-        left: 6px;
-        top: 5px;
-        width: 6px;
-        height: 6px;
-        background: rgba(255,255,255,0.8);
-        border-radius: 50%;
-      }
-      @keyframes blink {
-        0%, 92%, 100% { transform: scaleY(1); }
-        95%           { transform: scaleY(0.1); }
-      }
+      #notes{ position:absolute; left:50%; top:65%; width:0; height:0; z-index:5; pointer-events:none; }
+      .note{ position:absolute; font-size:20px; color:#2d2d2d; opacity:0; transform:translate(-50%,-50%) scale(.8) rotate(-10deg);
+        animation:floatNote 3.6s ease-in forwards; text-shadow:0 1px 0 rgba(255,255,255,.5), 0 0 6px rgba(0,0,0,.08);}
+      @keyframes floatNote { 0%{opacity:0; transform:translate(-10px,10px) scale(.7) rotate(-12deg)}
+        10%{opacity:1} 60%{opacity:1} 100%{opacity:0; transform:translate(60px,-120px) scale(1.2) rotate(8deg)} }
 
-      /* Smiley mouth */
-      .mouth {
-        position: absolute;
-        left: 50%;
-        top: 64%;
-        width: 70px;
-        height: 40px;
-        transform: translate(-50%, -50%);
-        border-bottom: 6px solid #2d2d2d;
-        border-radius: 0 0 60px 60px;
-      }
-      /* Cute cheeks */
-      .cheek {
-        position: absolute;
-        top: 60%;
-        width: 22px;
-        height: 14px;
-        background: rgba(255, 105, 97, 0.35);
-        filter: blur(0.5px);
-        border-radius: 50%;
-        animation: puff 3s ease-in-out infinite;
-      }
-      .cheek.left  { left: calc(50% - 55px); }
-      .cheek.right { left: calc(50% + 33px); }
-      @keyframes puff {
-        0%,100% { transform: scale(1); opacity: 0.9; }
-        50%     { transform: scale(1.15); opacity: 0.7; }
-      }
-
-      /* Musical notes container */
-      #notes {
-        position: absolute;
-        left: 50%;
-        top: 65%;
-        width: 0;
-        height: 0;
-        z-index: 5;
-        pointer-events: none;
-      }
-      .note {
-        position: absolute;
-        font-size: 20px;
-        color: #2d2d2d;
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0.8) rotate(-10deg);
-        animation: floatNote 3.6s ease-in forwards;
-        text-shadow:
-          0 1px 0 rgba(255,255,255,0.5),
-          0 0 6px rgba(0,0,0,0.08);
-      }
-      @keyframes floatNote {
-        0%   { opacity: 0; transform: translate(-10px, 10px) scale(0.7) rotate(-12deg); }
-        10%  { opacity: 1; }
-        60%  { opacity: 1; }
-        100% { opacity: 0; transform: translate(60px, -120px) scale(1.2) rotate(8deg); }
-      }
-
-      /* Foreground UI */
-      #wrap {
-        position: absolute;
-        inset: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        gap: 20px;
-        z-index: 10;
-        padding: 16px;
-        text-align: center;
-      }
-      button {
-        font-size: 44px;
-        padding: 22px 32px;
-        border-radius: 999px;
-        border: none;
-        background: #fff;
-        box-shadow: 0 6px 12px rgba(0,0,0,0.18);
-      }
-      video {
-        width: 100%;
-        max-width: 680px;
-        border: 6px solid white;
-        border-radius: 16px;
-        display: none;
-        background: #000;
-      }
-      .hint { color: #333; font-size: 16px; max-width: 720px; line-height: 1.4; text-shadow: 0 1px 0 rgba(255,255,255,0.6); }
-      .err  { color: #b00020; font-size: 18px; font-weight: 700; text-shadow: 0 1px 0 rgba(255,255,255,0.5); }
+      #wrap{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:20px; z-index:10; padding:16px; text-align:center; }
+      button{ font-size:44px; padding:22px 32px; border-radius:999px; border:none; background:#fff; box-shadow:0 6px 12px rgba(0,0,0,.18); }
+      video{ width:100%; max-width:680px; border:6px solid #fff; border-radius:16px; display:none; background:#000; }
+      .hint{ color:#333; font-size:16px; max-width:720px; line-height:1.4; text-shadow:0 1px 0 rgba(255,255,255,.6); }
+      .err{ color:#b00020; font-size:18px; font-weight:700; text-shadow:0 1px 0 rgba(255,255,255,.5); }
     </style>
   </head>
   <body>
     <div id="stage" aria-hidden="true">
       <div id="sky"></div>
       <div id="rainbow"></div>
+      <div class="cloud" style="--size:180px; top:12%; animation-duration:55s; animation-delay:0s;"></div>
+      <div class="cloud" style="--size:240px; top:22%; animation-duration:70s; animation-delay:8s;"></div>
+      <div class="cloud" style="--size:200px; top:30%; animation-duration:65s; animation-delay:16s;"></div>
 
-      <!-- A few drifting clouds -->
-      <div class="cloud" style="--size:180px; top:12%; animation-duration: 55s; animation-delay: 0s;"></div>
-      <div class="cloud" style="--size:240px; top:22%; animation-duration: 70s; animation-delay: 8s;"></div>
-      <div class="cloud" style="--size:200px; top:30%; animation-duration: 65s; animation-delay: 16s;"></div>
-
-      <!-- Sun with face -->
       <div id="sun" role="img" aria-label="Smiling sun">
         <div class="disc"></div>
-        <div class="ray r1"></div><div class="ray r2"></div><div class="ray r3"></div>
-        <div class="ray r4"></div><div class="ray r5"></div><div class="ray r6"></div>
-        <div class="ray r7"></div><div class="ray r8"></div><div class="ray r9"></div>
-        <div class="ray r10"></div><div class="ray r11"></div><div class="ray r12"></div>
-        <div class="eyes">
-          <div class="eye"></div>
-          <div class="eye"></div>
-        </div>
-        <div class="mouth"></div>
-        <div class="cheek left"></div>
-        <div class="cheek right"></div>
+        <div class="ray r1"></div><div class="ray r2"></div><div class="ray r3"></div><div class="ray r4"></div><div class="ray r5"></div><div class="ray r6"></div>
+        <div class="ray r7"></div><div class="ray r8"></div><div class="ray r9"></div><div class="ray r10"></div><div class="ray r11"></div><div class="ray r12"></div>
+        <div class="eyes"><div class="eye"></div><div class="eye"></div></div>
+        <div class="mouth"></div><div class="cheek left"></div><div class="cheek right"></div>
         <div id="notes" aria-hidden="true"></div>
       </div>
 
       <div id="hills"></div>
     </div>
 
-    <!-- Foreground UI -->
     <div id="wrap">
       <button id="playBtn" aria-label="Play today’s video">▶️ Play Today’s Video</button>
       <video id="v" controls playsinline></video>
-      <div class="hint">De Papa con Amor para Isabella</div>
+      <div class="hint">Videos load from your Google Drive “From Dad” folder.</div>
       <div class="err" id="error" role="alert" aria-live="polite"></div>
     </div>
 
     <script>
-      /* ====== CONFIG: set your real values here ====== */
-      const DRIVE_API_KEY = "AIzaSyDp0518xl10qVJVRf3w9Y2nLqv61YvJpKE";
-      const FOLDER_ID     = "11NvJiQFG-vveKXBQ6jXzdlTtFQt0vlQX";
-      /* ============================================== */
-
-      const playBtn = document.getElementById('playBtn');
-      const videoEl = document.getElementById('v');
-      const errorEl = document.getElementById('error');
-      const notesEl = document.getElementById('notes');
-
-      // Spawn cute musical notes near the sun’s mouth
+      const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzmFhQfWSCfpYJcn06v1sWPW4KyvWBPnC702nL20geZ7w_aKElQXaKmnEjJGG6lQPjd/exec"; // e.g. https://script.google.com/macros/s/.../exec
       const NOTE_CHARS = ["♪","♫","♬","𝄞"];
-      function spawnNote() {
-        const span = document.createElement('span');
-        span.className = 'note';
-        span.textContent = NOTE_CHARS[Math.floor(Math.random() * NOTE_CHARS.length)];
-        // randomize start offsets a little so it feels organic
-        span.style.left = (Math.random() * 16 - 8) + 'px';
-        span.style.top  = (Math.random() * 8 - 4) + 'px';
-        // vary size and timing
-        span.style.fontSize = (18 + Math.random()*10) + 'px';
-        span.style.animationDuration = (3.2 + Math.random()*1.2) + 's';
-        span.style.animationDelay = (Math.random()*0.4) + 's';
-        notesEl.appendChild(span);
-        // cleanup after animation completes
-        setTimeout(() => span.remove(), 4500);
+      const notesEl = document.getElementById('notes');
+      function spawnNote(){
+        const span=document.createElement('span'); span.className='note';
+        span.textContent=NOTE_CHARS[Math.floor(Math.random()*NOTE_CHARS.length)];
+        span.style.left=(Math.random()*16-8)+'px'; span.style.top=(Math.random()*8-4)+'px';
+        span.style.fontSize=(18+Math.random()*10)+'px'; span.style.animationDuration=(3.2+Math.random()*1.2)+'s'; span.style.animationDelay=(Math.random()*0.4)+'s';
+        notesEl.appendChild(span); setTimeout(()=>span.remove(),4500);
       }
-      // Periodically emit notes
       setInterval(spawnNote, 900);
 
-      async function getLatestDriveVideoUrl() {
-        const q = encodeURIComponent(`'${FOLDER_ID}' in parents and trashed = false and mimeType contains 'video/'`);
-        const fields = encodeURIComponent('files(id,name,modifiedTime)');
-        const url = `https://www.googleapis.com/drive/v3/files?q=${q}&orderBy=modifiedTime%20desc&pageSize=1&fields=${fields}&key=${DRIVE_API_KEY}`;
-        const res = await fetch(url);
-        if (!res.ok) throw new Error("Drive list failed: " + res.status);
+      const playBtn=document.getElementById('playBtn');
+      const videoEl=document.getElementById('v');
+      const errorEl=document.getElementById('error');
+
+      async function getLatestFromScript(){
+        const res = await fetch(APPS_SCRIPT_URL);
+        if(!res.ok) throw new Error("Latest-check failed: "+res.status);
         const data = await res.json();
-        if (!data.files || !data.files.length) throw new Error("No videos found in the folder.");
-        const f = data.files[0];
-        return `https://www.googleapis.com/drive/v3/files/${f.id}?alt=media&key=${DRIVE_API_KEY}`;
+        if(data.error) throw new Error(data.error);
+        return data; // { id, name, updated }
       }
 
-      playBtn.addEventListener('click', async () => {
-        errorEl.textContent = "";
-        playBtn.disabled = true;
-        try {
-          const src = await getLatestDriveVideoUrl();
-          videoEl.src = src + "&t=" + Date.now(); // cache-bust
-          videoEl.style.display = 'block';
-          playBtn.style.display = 'none';
+      function driveDirectLink(fileId){
+        // Public streaming link for “Anyone with link” files
+        return `https://drive.google.com/uc?export=download&id=${fileId}`;
+      }
+
+      playBtn.addEventListener('click', async ()=>{
+        errorEl.textContent=""; playBtn.disabled=true;
+        try{
+          const latest = await getLatestFromScript();
+          const src = driveDirectLink(latest.id) + "&t=" + Date.now();
+          videoEl.src = src; videoEl.style.display='block'; playBtn.style.display='none';
           await videoEl.play();
-        } catch (e) {
-          errorEl.textContent = e.message;
-          playBtn.disabled = false;
+        }catch(e){
+          errorEl.textContent = e.message; playBtn.disabled=false;
         }
       });
 
-      // PWA shell (won't cache Drive media)
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('./sw.js').catch(() => {});
-        });
+      if('serviceWorker' in navigator){
+        window.addEventListener('load', ()=>{ navigator.serviceWorker.register('./sw.js').catch(()=>{}); });
       }
-
-      // Make cloud speeds a bit smoother on low-power iPads
-      document.addEventListener('visibilitychange', () => {
-        if (document.hidden && !videoEl.paused && !videoEl.ended) {
-          videoEl.pause();
-        }
+      document.addEventListener('visibilitychange', ()=>{
+        if(document.hidden && !videoEl.paused && !videoEl.ended){ videoEl.pause(); }
       });
     </script>
   </body>
