@@ -1,5 +1,5 @@
 const CACHE_PREFIX = "aventuras-isabella-";
-const CACHE_NAME = `${CACHE_PREFIX}v2`;
+const CACHE_NAME = `${CACHE_PREFIX}v3`;
 const ALPHABET_SLUGS = [
   "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "n-tilde",
   "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",

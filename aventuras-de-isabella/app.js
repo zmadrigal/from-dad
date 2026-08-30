@@ -97,9 +97,11 @@ const alphabetStory = [
     moment: "letter",
     chapter: `LETRA ${upper}`,
     caption: `${upper} de ${word}`,
-    narration: index === 17
-      ? "Esta es la letra Q mayúscula, y esta es la letra q minúscula. Q de queso."
-      : `Esta es la ${letterNames[index]} mayúscula, y esta es la ${letterNames[index]} minúscula. ${letterNames[index]} de ${word}.`,
+    narration: index === 1
+      ? "Esta es la letra B mayúscula, y esta es la letra b minúscula. B de ballena."
+      : index === 17
+        ? "Esta es la letra Q mayúscula, y esta es la letra q minúscula. Q de queso."
+        : `Esta es la ${letterNames[index]} mayúscula, y esta es la ${letterNames[index]} minúscula. ${letterNames[index]} de ${word}.`,
     audio: `assets/audio-es/alphabet/${String(index + 1).padStart(2, "0")}-${slug}.mp3`,
     image: `assets/generated/alphabet/letter-${slug}.webp`,
     imageAlt: `Isabella y Juno descubren ${word}`,
