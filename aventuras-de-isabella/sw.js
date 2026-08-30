@@ -1,5 +1,9 @@
 const CACHE_PREFIX = "aventuras-isabella-";
-const CACHE_NAME = `${CACHE_PREFIX}v1`;
+const CACHE_NAME = `${CACHE_PREFIX}v2`;
+const ALPHABET_SLUGS = [
+  "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "n-tilde",
+  "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
+];
 const ASSETS = [
   "./",
   "./index.html",
@@ -19,6 +23,11 @@ const ASSETS = [
   "./assets/audio-es/05-lluvia.mp3",
   "./assets/audio-es/06-ciclo.mp3",
   "./assets/audio-es/07-final.mp3",
+  "./assets/generated/alphabet/cover.webp",
+  ...ALPHABET_SLUGS.map(slug => `./assets/generated/alphabet/letter-${slug}.webp`),
+  "./assets/audio-es/alphabet/00-intro.mp3",
+  ...ALPHABET_SLUGS.map((slug, index) => `./assets/audio-es/alphabet/${String(index + 1).padStart(2, "0")}-${slug}.mp3`),
+  "./assets/audio-es/alphabet/28-final.mp3",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
 ];

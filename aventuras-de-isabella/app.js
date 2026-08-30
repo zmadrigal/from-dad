@@ -1,4 +1,4 @@
-const story = [
+const waterStory = [
   {
     scene: "question",
     moment: "question",
@@ -57,19 +57,110 @@ const story = [
   },
 ];
 
+const alphabetLetters = [
+  ["A", "a", "árbol", "a"], ["B", "b", "ballena", "b"],
+  ["C", "c", "casa", "c"], ["D", "d", "dinosaurio", "d"],
+  ["E", "e", "estrella", "e"], ["F", "f", "flor", "f"],
+  ["G", "g", "gato", "g"], ["H", "h", "helado", "h"],
+  ["I", "i", "isla", "i"], ["J", "j", "jirafa", "j"],
+  ["K", "k", "kiwi", "k"], ["L", "l", "luna", "l"],
+  ["M", "m", "mariposa", "m"], ["N", "n", "nube", "n"],
+  ["Ñ", "ñ", "ñandú", "n-tilde"], ["O", "o", "oso", "o"],
+  ["P", "p", "perro", "p"], ["Q", "q", "queso", "q"],
+  ["R", "r", "rana", "r"], ["S", "s", "sol", "s"],
+  ["T", "t", "tortuga", "t"], ["U", "u", "uvas", "u"],
+  ["V", "v", "volcán", "v"], ["W", "w", "wafle", "w"],
+  ["X", "x", "xilófono", "x"], ["Y", "y", "yogur", "y"],
+  ["Z", "z", "zapato", "z"],
+];
+
+const letterNames = [
+  "a", "be", "ce", "de", "e", "efe", "ge", "hache", "i", "jota", "ka", "ele", "eme",
+  "ene", "eñe", "o", "pe", "cu", "erre", "ese", "te", "u", "uve", "doble u", "equis",
+  "i griega", "zeta",
+];
+
+const alphabetStory = [
+  {
+    scene: "alphabet",
+    moment: "alphabet-intro",
+    chapter: "EL ABECEDARIO",
+    caption: "Descubriremos las 27 letras en mayúscula y minúscula.",
+    narration: "¡Hola, exploradora! Hoy vamos a descubrir el abecedario en español. Veremos cada letra, en mayúscula y en minúscula. Escucha, observa y aprende. ¡Comencemos!",
+    audio: "assets/audio-es/alphabet/00-intro.mp3",
+    image: "assets/generated/alphabet/cover.webp",
+    imageAlt: "Isabella y Juno se preparan para descubrir el abecedario",
+    counter: "27 LETRAS",
+  },
+  ...alphabetLetters.map(([upper, lower, word, slug], index) => ({
+    scene: "alphabet",
+    moment: "letter",
+    chapter: `LETRA ${upper}`,
+    caption: `${upper} de ${word}`,
+    narration: index === 17
+      ? "Esta es la letra Q mayúscula, y esta es la letra q minúscula. Q de queso."
+      : `Esta es la ${letterNames[index]} mayúscula, y esta es la ${letterNames[index]} minúscula. ${letterNames[index]} de ${word}.`,
+    audio: `assets/audio-es/alphabet/${String(index + 1).padStart(2, "0")}-${slug}.mp3`,
+    image: `assets/generated/alphabet/letter-${slug}.webp`,
+    imageAlt: `Isabella y Juno descubren ${word}`,
+    letter: { upper, lower, word },
+    counter: `${index + 1} / 27`,
+  })),
+  {
+    scene: "alphabet",
+    moment: "alphabet-final",
+    chapter: "¡LAS CONOCEMOS!",
+    caption: "Ya reconoces las 27 letras en sus dos formas.",
+    narration: "¡Muy bien! Ya conoces las veintisiete letras del abecedario, en mayúscula y en minúscula. Puedes volver a verlas cuando quieras. ¡Hasta la próxima aventura!",
+    audio: "assets/audio-es/alphabet/28-final.mp3",
+    image: "assets/generated/alphabet/cover.webp",
+    imageAlt: "Isabella y Juno celebran el abecedario",
+    counter: "27 / 27",
+  },
+];
+
+const episodes = {
+  water: {
+    label: "CIENCIA PARA CURIOSOS · 2 MIN",
+    story: waterStory,
+    finishEyebrow: "¡LO DESCUBRIMOS!",
+    finishTitle: "El agua viaja una y otra vez.",
+    finishSummary: "Sol → vapor → nube → lluvia",
+  },
+  alphabet: {
+    label: "LETRAS EN ESPAÑOL · 4 MIN",
+    story: alphabetStory,
+    finishEyebrow: "¡MUY BIEN!",
+    finishTitle: "Ya conoces el abecedario.",
+    finishSummary: "27 letras · mayúsculas y minúsculas",
+  },
+};
+
 const elements = {
   scenes: [...document.querySelectorAll(".scene")],
-  startScreen: document.querySelector("#startScreen"),
+  episodeLibrary: document.querySelector("#episodeLibrary"),
+  episodeCards: [...document.querySelectorAll("[data-episode]")],
   finishScreen: document.querySelector("#finishScreen"),
-  startButton: document.querySelector("#startButton"),
   replayButton: document.querySelector("#replayButton"),
+  episodesButton: document.querySelector("#episodesButton"),
+  homeButton: document.querySelector("#homeButton"),
   pauseButton: document.querySelector("#pauseButton"),
+  episodeLabel: document.querySelector("#episodeLabel"),
   chapter: document.querySelector("#chapter"),
   caption: document.querySelector("#caption"),
   stepCount: document.querySelector("#stepCount"),
   progressBar: document.querySelector("#progressBar"),
+  alphabetImage: document.querySelector("#alphabetImage"),
+  letterPanel: document.querySelector("#letterPanel"),
+  uppercaseLetter: document.querySelector("#uppercaseLetter"),
+  lowercaseLetter: document.querySelector("#lowercaseLetter"),
+  exampleWord: document.querySelector("#exampleWord"),
+  finishEyebrow: document.querySelector("#finishEyebrow"),
+  finishTitle: document.querySelector("#finishTitle"),
+  finishSummary: document.querySelector("#finishSummary"),
 };
 
+let activeEpisode;
 let stepIndex = 0;
 let paused = false;
 let runId = 0;
@@ -128,7 +219,7 @@ function speakFallback(text, currentRun) {
     const voices = [...window.speechSynthesis.getVoices()].sort((a, b) => scoreSpanishVoice(b) - scoreSpanishVoice(a));
     const pronunciationText = text.replaceAll("Isabella", "Isabela").replaceAll("Juno", "Dshuno");
     const utterance = new SpeechSynthesisUtterance(pronunciationText);
-    utterance.lang = "es-MX";
+    utterance.lang = "es-419";
     utterance.voice = voices[0] ?? null;
     utterance.rate = 0.9;
     utterance.pitch = 1.03;
@@ -148,17 +239,34 @@ async function narrate(step, currentRun) {
   }
 }
 
-async function playStep() {
-  if (paused || stepIndex >= story.length) return;
-  const currentRun = ++runId;
-  const step = story[stepIndex];
-
+function renderStep(step, storyLength) {
   activateScene(step.scene);
   document.body.dataset.moment = step.moment;
   elements.chapter.textContent = step.chapter;
   elements.caption.textContent = step.caption;
-  elements.stepCount.textContent = `${stepIndex + 1} / ${story.length}`;
-  elements.progressBar.style.width = `${((stepIndex + 1) / story.length) * 100}%`;
+  elements.stepCount.textContent = step.counter ?? `${stepIndex + 1} / ${storyLength}`;
+  elements.progressBar.style.width = `${((stepIndex + 1) / storyLength) * 100}%`;
+
+  if (step.scene === "alphabet") {
+    elements.alphabetImage.src = step.image;
+    elements.alphabetImage.alt = step.imageAlt;
+    elements.letterPanel.hidden = !step.letter;
+    if (step.letter) {
+      elements.uppercaseLetter.textContent = step.letter.upper;
+      elements.lowercaseLetter.textContent = step.letter.lower;
+      elements.exampleWord.textContent = step.letter.word;
+    }
+  } else {
+    elements.letterPanel.hidden = true;
+  }
+}
+
+async function playStep() {
+  const story = episodes[activeEpisode].story;
+  if (paused || stepIndex >= story.length) return;
+  const currentRun = ++runId;
+  const step = story[stepIndex];
+  renderStep(step, story.length);
 
   await narrate(step, currentRun);
   if (paused || currentRun !== runId) return;
@@ -170,24 +278,42 @@ async function playStep() {
   else finishStory();
 }
 
-function startStory() {
+function startEpisode(episodeId) {
   stopNarration();
+  activeEpisode = episodeId;
   stepIndex = 0;
   paused = false;
-  elements.startScreen.hidden = true;
+  elements.episodeLibrary.hidden = true;
   elements.finishScreen.hidden = true;
-  elements.pauseButton.hidden = false;
+  elements.episodeLabel.textContent = episodes[episodeId].label;
   elements.pauseButton.textContent = "Ⅱ";
   elements.pauseButton.setAttribute("aria-label", "Pausar historia");
+  document.body.dataset.view = "playing";
   playStep();
 }
 
 function finishStory() {
+  const episode = episodes[activeEpisode];
   runId += 1;
   stopNarration();
-  elements.pauseButton.hidden = true;
+  document.body.dataset.view = "finished";
+  elements.finishEyebrow.textContent = episode.finishEyebrow;
+  elements.finishTitle.textContent = episode.finishTitle;
+  elements.finishSummary.textContent = episode.finishSummary;
   elements.finishScreen.hidden = false;
   elements.replayButton.focus({ preventScroll: true });
+}
+
+function showLibrary() {
+  runId += 1;
+  stopNarration();
+  paused = false;
+  document.body.dataset.view = "library";
+  document.body.dataset.moment = "none";
+  elements.finishScreen.hidden = true;
+  elements.episodeLibrary.hidden = false;
+  elements.scenes.forEach(scene => scene.classList.remove("active"));
+  elements.episodeCards[0].focus({ preventScroll: true });
 }
 
 function togglePause() {
@@ -199,12 +325,14 @@ function togglePause() {
   if (!paused) playStep();
 }
 
-elements.startButton.addEventListener("click", startStory);
-elements.replayButton.addEventListener("click", startStory);
+elements.episodeCards.forEach(card => card.addEventListener("click", () => startEpisode(card.dataset.episode)));
+elements.replayButton.addEventListener("click", () => startEpisode(activeEpisode));
+elements.episodesButton.addEventListener("click", showLibrary);
+elements.homeButton.addEventListener("click", showLibrary);
 elements.pauseButton.addEventListener("click", togglePause);
 
 document.addEventListener("visibilitychange", () => {
-  if (document.hidden && !paused && elements.startScreen.hidden && elements.finishScreen.hidden) togglePause();
+  if (document.hidden && !paused && document.body.dataset.view === "playing") togglePause();
 });
 
 if ("serviceWorker" in navigator) {

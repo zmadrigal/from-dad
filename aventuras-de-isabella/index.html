@@ -1,22 +1,24 @@
 <!doctype html>
-<html lang="es-MX">
+<html lang="es-419">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#122f43" />
+    <meta name="theme-color" content="#102f43" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="Aventuras de Isabella" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <title>Aventuras de Isabella</title>
+    <link rel="icon" href="icons/icon-192.png" />
     <link rel="apple-touch-icon" href="icons/icon-192.png" />
     <link rel="manifest" href="manifest.json" />
     <link rel="stylesheet" href="styles.css" />
     <script src="app.js" defer></script>
   </head>
-  <body data-moment="question">
+  <body data-view="library" data-moment="none">
     <main id="app">
-      <section class="scene-stack" aria-label="Historia ilustrada del ciclo del agua">
-        <figure class="scene active" data-scene="question">
+      <section class="scene-stack player-ui" aria-label="Historia ilustrada">
+        <figure class="scene" data-scene="question">
           <img src="assets/generated/scene-01-question.webp" alt="Isabella y Juno observan la lluvia por la ventana" />
         </figure>
         <figure class="scene" data-scene="evaporation">
@@ -31,56 +33,85 @@
         <figure class="scene" data-scene="cycle">
           <img src="assets/generated/scene-05-cycle.webp" alt="Isabella y Juno muestran el viaje completo del agua" />
         </figure>
+        <figure class="scene alphabet-scene" data-scene="alphabet">
+          <img id="alphabetImage" src="assets/generated/alphabet/cover.webp" alt="Isabella y Juno descubren el abecedario" />
+          <div class="letter-panel" id="letterPanel" hidden>
+            <div class="letter-pair"><b id="uppercaseLetter">A</b><b id="lowercaseLetter">a</b></div>
+            <span id="exampleWord">árbol</span>
+          </div>
+        </figure>
         <div class="cinematic-shade" aria-hidden="true"></div>
       </section>
 
-      <div class="scene-effects" aria-hidden="true">
+      <div class="scene-effects player-ui" aria-hidden="true">
         <div class="vapour-particles"><i></i><i></i><i></i><i></i><i></i><i></i></div>
         <div class="rain-streaks"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
         <div class="cycle-sparkles"><i></i><i></i><i></i><i></i><i></i></div>
       </div>
 
-      <header class="topbar">
+      <header class="topbar player-ui">
         <div class="brand"><b>AVENTURAS DE ISABELLA</b><span>con Juno</span></div>
-        <div class="episode">CIENCIA PARA CURIOSOS <i></i> 2 MIN</div>
+        <div class="episode" id="episodeLabel">CIENCIA PARA CURIOSOS <i></i> 2 MIN</div>
       </header>
 
-      <aside class="narrator" aria-label="Isabella está narrando">
+      <aside class="narrator player-ui" aria-label="Isabella está narrando">
         <img src="assets/generated/character-master.webp" alt="Isabella y Juno" />
         <div><small>TE CUENTA</small><b>Isabella</b></div>
         <div class="voice-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
       </aside>
 
-      <section class="story-caption" aria-live="polite" aria-atomic="true">
-        <div class="chapter-row"><span id="chapter">UNA GRAN PREGUNTA</span><b id="stepCount">1 / 7</b></div>
-        <p id="caption">¿De dónde viene la lluvia?</p>
+      <section class="story-caption player-ui" aria-live="polite" aria-atomic="true">
+        <div class="chapter-row"><span id="chapter"></span><b id="stepCount"></b></div>
+        <p id="caption"></p>
         <div class="progress" aria-hidden="true"><i id="progressBar"></i></div>
       </section>
 
-      <button class="pause-button" id="pauseButton" type="button" aria-label="Pausar historia" hidden>Ⅱ</button>
+      <div class="player-actions player-ui">
+        <button class="round-button" id="homeButton" type="button" aria-label="Volver a los episodios">⌂</button>
+        <button class="round-button" id="pauseButton" type="button" aria-label="Pausar historia">Ⅱ</button>
+      </div>
 
-      <section class="start-screen" id="startScreen">
-        <img src="assets/generated/scene-01-question.webp" alt="Isabella y Juno miran la lluvia con curiosidad" />
-        <div class="start-shade"></div>
-        <div class="start-copy">
-          <p>UN PEQUEÑO DESCUBRIMIENTO</p>
-          <h1>¿De dónde viene<br /><em>la lluvia?</em></h1>
-          <span>Isabella y Juno siguen el viaje de una gota de agua.</span>
-          <button id="startButton" type="button"><i aria-hidden="true">▶</i> Comenzar el cuento</button>
-          <small>Un toque y la historia continúa sola</small>
+      <section class="episode-library" id="episodeLibrary" aria-labelledby="libraryTitle">
+        <div class="library-heading">
+          <p>APRENDER ES UNA AVENTURA</p>
+          <h1 id="libraryTitle">¿Qué descubrimos hoy?</h1>
+          <span>Elige un episodio. Con un toque, la historia continúa sola.</span>
+        </div>
+        <div class="episode-grid">
+          <button class="episode-card" type="button" data-episode="water">
+            <img src="assets/generated/scene-05-cycle.webp" alt="Isabella y Juno exploran el ciclo del agua" />
+            <span class="card-shade"></span>
+            <span class="card-copy">
+              <small>CIENCIA · 2 MIN</small>
+              <b>El ciclo<br />del agua</b>
+              <em><i aria-hidden="true">▶</i> Ver episodio</em>
+            </span>
+          </button>
+          <button class="episode-card" type="button" data-episode="alphabet">
+            <img src="assets/generated/alphabet/cover.webp" alt="Isabella y Juno presentan el abecedario en español" />
+            <span class="card-shade"></span>
+            <span class="card-copy">
+              <small>LETRAS · 4 MIN</small>
+              <b>El<br />abecedario</b>
+              <em><i aria-hidden="true">▶</i> Ver episodio</em>
+            </span>
+          </button>
         </div>
       </section>
 
       <section class="finish-screen" id="finishScreen" hidden>
         <div class="finish-copy">
           <div class="discovery-mark" aria-hidden="true">✦</div>
-          <p>¡LO DESCUBRIMOS!</p>
-          <h2>El agua viaja<br />una y otra vez.</h2>
-          <span>Sol → vapor → nube → lluvia</span>
-          <button id="replayButton" type="button">↻ Ver otra vez</button>
+          <p id="finishEyebrow">¡LO DESCUBRIMOS!</p>
+          <h2 id="finishTitle"></h2>
+          <span id="finishSummary"></span>
+          <div class="finish-actions">
+            <button id="replayButton" type="button">↻ Ver otra vez</button>
+            <button class="secondary-button" id="episodesButton" type="button">Elegir otro episodio</button>
+          </div>
         </div>
       </section>
     </main>
-    <noscript>Esta historia necesita JavaScript activado.</noscript>
+    <noscript>Esta aventura necesita JavaScript activado.</noscript>
   </body>
 </html>
