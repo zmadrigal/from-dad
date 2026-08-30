@@ -1,24 +1,44 @@
-const CACHE_NAME = "from-dad-shell-v1";
-const ASSETS = ["./","./index.html","./manifest.json","./icons/icon-192.png","./icons/icon-512.png"];
+const CACHE_NAME = "isabella-juno-historias-v7";
+const ASSETS = [
+  "./",
+  "./index.html",
+  "./styles.css",
+  "./app.js",
+  "./manifest.json",
+  "./assets/generated/character-master.webp",
+  "./assets/generated/scene-01-question.webp",
+  "./assets/generated/scene-02-evaporation.webp",
+  "./assets/generated/scene-03-condensation.webp",
+  "./assets/generated/scene-04-rain.webp",
+  "./assets/generated/scene-05-cycle.webp",
+  "./assets/audio-es/01-pregunta.mp3",
+  "./assets/audio-es/02-sol.mp3",
+  "./assets/audio-es/03-evaporacion.mp3",
+  "./assets/audio-es/04-condensacion.mp3",
+  "./assets/audio-es/05-lluvia.mp3",
+  "./assets/audio-es/06-ciclo.mp3",
+  "./assets/audio-es/07-final.mp3",
+  "./icons/icon-192.png",
+  "./icons/icon-512.png",
+];
 
-self.addEventListener("install", e => {
-  e.waitUntil(caches.open(CACHE_NAME).then(c => c.addAll(ASSETS)));
+self.addEventListener("install", event => {
+  event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS)));
+  self.skipWaiting();
 });
 
-self.addEventListener("activate", e => {
-  e.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k)))));
+self.addEventListener("activate", event => {
+  event.waitUntil(caches.keys().then(keys => Promise.all(
+    keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key))
+  )));
+  self.clients.claim();
 });
 
-self.addEventListener("fetch", e => {
-  const url = new URL(e.request.url);
-  if (url.host.includes("googleapis.com") && url.pathname.includes("/files/") && url.search.includes("alt=media")) return;
-  if (e.request.destination === "document") {
-    e.respondWith(fetch(e.request).then(r => {
-      const copy = r.clone();
-      caches.open(CACHE_NAME).then(c => c.put(e.request, copy));
-      return r;
-    }).catch(() => caches.match(e.request)));
-  } else {
-    e.respondWith(caches.match(e.request).then(m => m || fetch(e.request)));
+self.addEventListener("fetch", event => {
+  if (event.request.method !== "GET") return;
+  if (event.request.mode === "navigate") {
+    event.respondWith(fetch(event.request).catch(() => caches.match("./index.html")));
+    return;
   }
+  event.respondWith(caches.match(event.request).then(cached => cached ?? fetch(event.request)));
 });
