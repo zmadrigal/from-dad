@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="es-MX">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#122f43" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Aventuras de Isabella" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>Aventuras de Isabella</title>
+    <link rel="apple-touch-icon" href="icons/icon-192.png" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body data-moment="question">
+    <main id="app">
+      <section class="scene-stack" aria-label="Historia ilustrada del ciclo del agua">
+        <figure class="scene active" data-scene="question">
+          <img src="assets/generated/scene-01-question.webp" alt="Isabella y Juno observan la lluvia por la ventana" />
+        </figure>
+        <figure class="scene" data-scene="evaporation">
+          <img src="assets/generated/scene-02-evaporation.webp" alt="El Sol calienta un charco y el vapor de agua sube" />
+        </figure>
+        <figure class="scene" data-scene="condensation">
+          <img src="assets/generated/scene-03-condensation.webp" alt="Isabella observa las gotitas que forman una nube" />
+        </figure>
+        <figure class="scene" data-scene="rain">
+          <img src="assets/generated/scene-04-rain.webp" alt="Las gotas se unen y caen como lluvia" />
+        </figure>
+        <figure class="scene" data-scene="cycle">
+          <img src="assets/generated/scene-05-cycle.webp" alt="Isabella y Juno muestran el viaje completo del agua" />
+        </figure>
+        <div class="cinematic-shade" aria-hidden="true"></div>
+      </section>
+
+      <div class="scene-effects" aria-hidden="true">
+        <div class="vapour-particles"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="rain-streaks"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="cycle-sparkles"><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+
+      <header class="topbar">
+        <div class="brand"><b>AVENTURAS DE ISABELLA</b><span>con Juno</span></div>
+        <div class="episode">CIENCIA PARA CURIOSOS <i></i> 2 MIN</div>
+      </header>
+
+      <aside class="narrator" aria-label="Isabella está narrando">
+        <img src="assets/generated/character-master.webp" alt="Isabella y Juno" />
+        <div><small>TE CUENTA</small><b>Isabella</b></div>
+        <div class="voice-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      </aside>
+
+      <section class="story-caption" aria-live="polite" aria-atomic="true">
+        <div class="chapter-row"><span id="chapter">UNA GRAN PREGUNTA</span><b id="stepCount">1 / 7</b></div>
+        <p id="caption">¿De dónde viene la lluvia?</p>
+        <div class="progress" aria-hidden="true"><i id="progressBar"></i></div>
+      </section>
+
+      <button class="pause-button" id="pauseButton" type="button" aria-label="Pausar historia" hidden>Ⅱ</button>
+
+      <section class="start-screen" id="startScreen">
+        <img src="assets/generated/scene-01-question.webp" alt="Isabella y Juno miran la lluvia con curiosidad" />
+        <div class="start-shade"></div>
+        <div class="start-copy">
+          <p>UN PEQUEÑO DESCUBRIMIENTO</p>
+          <h1>¿De dónde viene<br /><em>la lluvia?</em></h1>
+          <span>Isabella y Juno siguen el viaje de una gota de agua.</span>
+          <button id="startButton" type="button"><i aria-hidden="true">▶</i> Comenzar el cuento</button>
+          <small>Un toque y la historia continúa sola</small>
+        </div>
+      </section>
+
+      <section class="finish-screen" id="finishScreen" hidden>
+        <div class="finish-copy">
+          <div class="discovery-mark" aria-hidden="true">✦</div>
+          <p>¡LO DESCUBRIMOS!</p>
+          <h2>El agua viaja<br />una y otra vez.</h2>
+          <span>Sol → vapor → nube → lluvia</span>
+          <button id="replayButton" type="button">↻ Ver otra vez</button>
+        </div>
+      </section>
+    </main>
+    <noscript>Esta historia necesita JavaScript activado.</noscript>
+  </body>
+</html>
