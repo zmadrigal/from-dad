@@ -1,5 +1,5 @@
 const CACHE_PREFIX = "aventuras-isabella-";
-const CACHE_NAME = `${CACHE_PREFIX}v4`;
+const CACHE_NAME = `${CACHE_PREFIX}v5`;
 const ALPHABET_SLUGS = [
   "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "n-tilde",
   "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
@@ -11,6 +11,8 @@ const ASSETS = [
   "./app.js",
   "./manifest.json",
   "./assets/generated/character-master.webp",
+  "./assets/generated/character-pamela.webp",
+  "./assets/generated/character-federico.webp",
   "./assets/generated/scene-01-question.webp",
   "./assets/generated/scene-02-evaporation.webp",
   "./assets/generated/scene-03-condensation.webp",

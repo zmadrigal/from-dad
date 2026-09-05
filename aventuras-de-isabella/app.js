@@ -160,7 +160,7 @@ const seasonsStory = [
     narration: "En verano los días pueden ser más calurosos y el Sol más fuerte. Antes de salir, pide a un adulto que te ponga protector solar. Usa sombrero, busca sombra y toma agua aunque no tengas sed. Nuestro perrito también necesita sombra y agua fresca. Nunca dejamos a una persona ni a una mascota dentro de un auto estacionado.",
     audio: "assets/audio-es/seasons/03-summer.mp3",
     image: "assets/generated/seasons/summer.webp",
-    imageAlt: "Isabella y Juno descansan bajo la sombra con sombrero, protector solar y agua",
+    imageAlt: "Pamela ayuda a Isabella a ponerse protector solar mientras Juno descansa en la sombra con agua",
   },
   {
     scene: "seasons",
@@ -190,7 +190,7 @@ const seasonsStory = [
     narration: "El clima puede cambiar en cualquier estación. Antes de salir, mira el tiempo con un adulto. Así podrán elegir la ropa correcta y llevar agua. Escucha a tu cuerpo: si tienes demasiado calor, frío, picazón o mareo, detente y cuéntaselo a un adulto.",
     audio: "assets/audio-es/seasons/06-ready.mp3",
     image: "assets/generated/seasons/ready.webp",
-    imageAlt: "Isabella y Juno revisan el tiempo y eligen ropa adecuada antes de salir",
+    imageAlt: "Federico ayuda a Isabella y Juno a revisar el tiempo y elegir ropa adecuada",
   },
   {
     scene: "seasons",
