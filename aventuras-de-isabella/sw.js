@@ -1,5 +1,5 @@
 const CACHE_PREFIX = "aventuras-isabella-";
-const CACHE_NAME = `${CACHE_PREFIX}v3`;
+const CACHE_NAME = `${CACHE_PREFIX}v4`;
 const ALPHABET_SLUGS = [
   "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "n-tilde",
   "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
@@ -28,6 +28,21 @@ const ASSETS = [
   "./assets/audio-es/alphabet/00-intro.mp3",
   ...ALPHABET_SLUGS.map((slug, index) => `./assets/audio-es/alphabet/${String(index + 1).padStart(2, "0")}-${slug}.mp3`),
   "./assets/audio-es/alphabet/28-final.mp3",
+  "./assets/generated/seasons/cover.webp",
+  "./assets/generated/seasons/earth.webp",
+  "./assets/generated/seasons/spring.webp",
+  "./assets/generated/seasons/summer.webp",
+  "./assets/generated/seasons/autumn.webp",
+  "./assets/generated/seasons/winter.webp",
+  "./assets/generated/seasons/ready.webp",
+  "./assets/audio-es/seasons/00-intro.mp3",
+  "./assets/audio-es/seasons/01-earth.mp3",
+  "./assets/audio-es/seasons/02-spring.mp3",
+  "./assets/audio-es/seasons/03-summer.mp3",
+  "./assets/audio-es/seasons/04-autumn.mp3",
+  "./assets/audio-es/seasons/05-winter.mp3",
+  "./assets/audio-es/seasons/06-ready.mp3",
+  "./assets/audio-es/seasons/07-final.mp3",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
 ];

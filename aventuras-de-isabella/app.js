@@ -121,6 +121,89 @@ const alphabetStory = [
   },
 ];
 
+const seasonsStory = [
+  {
+    scene: "seasons",
+    moment: "seasons-intro",
+    chapter: "LAS CUATRO ESTACIONES",
+    caption: "Primavera, verano, otoño e invierno traen cambios maravillosos.",
+    narration: "¡Hola, exploradora! Soy Isabella, y él es Juno. Durante el año, el clima va cambiando. Hay cuatro estaciones: primavera, verano, otoño e invierno. Cada una trae cambios maravillosos. ¡Vamos a descubrir cómo cuidarnos!",
+    audio: "assets/audio-es/seasons/00-intro.mp3",
+    image: "assets/generated/seasons/cover.webp",
+    imageAlt: "Isabella y Juno rodeados por las cuatro estaciones",
+  },
+  {
+    scene: "seasons",
+    moment: "seasons-earth",
+    chapter: "¿POR QUÉ CAMBIAN?",
+    caption: "La Tierra está inclinada y recibe distinta luz durante su viaje alrededor del Sol.",
+    narration: "La Tierra viaja alrededor del Sol y está un poquito inclinada. Durante el viaje, cada lugar recibe diferentes cantidades de luz y calor. Por eso cambian las estaciones, y no llegan al mismo tiempo a todos los países.",
+    audio: "assets/audio-es/seasons/01-earth.mp3",
+    image: "assets/generated/seasons/earth.webp",
+    imageAlt: "Isabella y Juno observan un modelo de la Tierra inclinada alrededor del Sol",
+  },
+  {
+    scene: "seasons",
+    moment: "seasons-spring",
+    chapter: "PRIMAVERA Y POLEN",
+    caption: "Si el polen causa picazón, no te frotes los ojos: lávate y avisa a un adulto.",
+    narration: "En primavera suele hacer más calor y muchas plantas florecen. Las flores sueltan polen, un polvo diminuto que ayuda a formar nuevas plantas. A algunas personas les causa estornudos, picazón en la nariz o en los ojos. No te frotes los ojos. Al volver a casa, lávate las manos y la cara, y avisa a un adulto si te molesta.",
+    audio: "assets/audio-es/seasons/02-spring.mp3",
+    image: "assets/generated/seasons/spring.webp",
+    imageAlt: "Isabella se lava la cara y las manos después de jugar entre flores de primavera",
+  },
+  {
+    scene: "seasons",
+    moment: "seasons-summer",
+    chapter: "VERANO Y SOL",
+    caption: "Protector solar, sombrero, sombra y agua nos cuidan del calor.",
+    narration: "En verano los días pueden ser más calurosos y el Sol más fuerte. Antes de salir, pide a un adulto que te ponga protector solar. Usa sombrero, busca sombra y toma agua aunque no tengas sed. Nuestro perrito también necesita sombra y agua fresca. Nunca dejamos a una persona ni a una mascota dentro de un auto estacionado.",
+    audio: "assets/audio-es/seasons/03-summer.mp3",
+    image: "assets/generated/seasons/summer.webp",
+    imageAlt: "Isabella y Juno descansan bajo la sombra con sombrero, protector solar y agua",
+  },
+  {
+    scene: "seasons",
+    moment: "seasons-autumn",
+    chapter: "OTOÑO Y AIRE FRESCO",
+    caption: "Usa ropa en capas y camina con cuidado cerca de hojas mojadas.",
+    narration: "En otoño muchos días se vuelven frescos y algunas hojas cambian de color y caen. Ponte ropa en capas y una chaqueta que puedas quitar si sientes calor. Las hojas mojadas pueden resbalar, así que camina despacio. Como oscurece más temprano, quédate cerca del adulto que te acompaña.",
+    audio: "assets/audio-es/seasons/04-autumn.mp3",
+    image: "assets/generated/seasons/autumn.webp",
+    imageAlt: "Isabella y Juno caminan por el lado seco de un sendero con hojas de otoño",
+  },
+  {
+    scene: "seasons",
+    moment: "seasons-winter",
+    chapter: "INVIERNO Y FRÍO",
+    caption: "Abrigo, gorro, bufanda, guantes y botas ayudan a conservar el calor.",
+    narration: "En invierno puede hacer mucho frío. Vístete en capas, con abrigo, gorro, bufanda, guantes y botas. Mantente seca, porque la ropa mojada enfría el cuerpo. Si tienes mucho frío o te mojas, entra a un lugar cálido y avisa a un adulto. Los perritos pequeños también pueden necesitar su abrigo.",
+    audio: "assets/audio-es/seasons/05-winter.mp3",
+    image: "assets/generated/seasons/winter.webp",
+    imageAlt: "Isabella y Juno llevan ropa abrigada y seca para salir en invierno",
+  },
+  {
+    scene: "seasons",
+    moment: "seasons-ready",
+    chapter: "ANTES DE SALIR",
+    caption: "Mira el tiempo, elige la ropa correcta, lleva agua y escucha a tu cuerpo.",
+    narration: "El clima puede cambiar en cualquier estación. Antes de salir, mira el tiempo con un adulto. Así podrán elegir la ropa correcta y llevar agua. Escucha a tu cuerpo: si tienes demasiado calor, frío, picazón o mareo, detente y cuéntaselo a un adulto.",
+    audio: "assets/audio-es/seasons/06-ready.mp3",
+    image: "assets/generated/seasons/ready.webp",
+    imageAlt: "Isabella y Juno revisan el tiempo y eligen ropa adecuada antes de salir",
+  },
+  {
+    scene: "seasons",
+    moment: "seasons-final",
+    chapter: "¡LISTOS TODO EL AÑO!",
+    caption: "Observar el clima nos ayuda a disfrutar cada estación con seguridad.",
+    narration: "¡Lo descubrimos! En primavera nos cuidamos del polen. En verano, del Sol y el calor. En otoño, del aire fresco y las hojas mojadas. En invierno, del frío y la humedad. Observar el clima nos ayuda a disfrutar cada estación de forma segura. ¡Hasta la próxima aventura!",
+    audio: "assets/audio-es/seasons/07-final.mp3",
+    image: "assets/generated/seasons/cover.webp",
+    imageAlt: "Isabella y Juno celebran lo aprendido sobre las cuatro estaciones",
+  },
+];
+
 const episodes = {
   water: {
     label: "CIENCIA PARA CURIOSOS · 2 MIN",
@@ -135,6 +218,13 @@ const episodes = {
     finishEyebrow: "¡MUY BIEN!",
     finishTitle: "Ya conoces el abecedario.",
     finishSummary: "27 letras · mayúsculas y minúsculas",
+  },
+  seasons: {
+    label: "SALUD Y NATURALEZA · 3 MIN",
+    story: seasonsStory,
+    finishEyebrow: "¡LISTOS TODO EL AÑO!",
+    finishTitle: "Sabemos cuidarnos en cada estación.",
+    finishSummary: "Primavera · verano · otoño · invierno",
   },
 };
 
@@ -153,6 +243,7 @@ const elements = {
   stepCount: document.querySelector("#stepCount"),
   progressBar: document.querySelector("#progressBar"),
   alphabetImage: document.querySelector("#alphabetImage"),
+  seasonsImage: document.querySelector("#seasonsImage"),
   letterPanel: document.querySelector("#letterPanel"),
   uppercaseLetter: document.querySelector("#uppercaseLetter"),
   lowercaseLetter: document.querySelector("#lowercaseLetter"),
@@ -260,6 +351,10 @@ function renderStep(step, storyLength) {
     }
   } else {
     elements.letterPanel.hidden = true;
+    if (step.scene === "seasons") {
+      elements.seasonsImage.src = step.image;
+      elements.seasonsImage.alt = step.imageAlt;
+    }
   }
 }
 

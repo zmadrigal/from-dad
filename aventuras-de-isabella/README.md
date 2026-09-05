@@ -1,11 +1,12 @@
 # Aventuras de Isabella
 
-Una colección de historias educativas en español latinoamericano para una niña de cuatro años. Un toque en un episodio activa el audio en iPad; después, la historia narrada avanza automáticamente.
+Una colección de historias educativas en español latinoamericano para niños de cuatro y cinco años. Un toque en un episodio activa el audio en iPad; después, la historia narrada avanza automáticamente.
 
-Incluye dos episodios:
+Incluye tres episodios:
 
 - **El ciclo del agua**, con lenguaje sencillo y científicamente correcto.
 - **El abecedario**, con las 27 letras del español, incluida la Ñ. Cada escena muestra la letra en mayúscula y minúscula junto con una ilustración clara de una palabra que comienza con ella.
+- **Las estaciones**, con una explicación sencilla de por qué cambian y consejos para cuidarse del polen, el Sol, el calor, las hojas mojadas y el frío.
 
 La aplicación funciona sin conexión después de la primera visita y no recopila ni envía datos infantiles.
 
