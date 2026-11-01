@@ -10,7 +10,17 @@ A static Melbourne Cup 2026 office draw, designed for a shared meeting-room scre
 
 Optionally enter a player's name, then pick a numbered stable door. Horses are cryptographically shuffled once per new draw. A door stays open and cannot be claimed twice. Clicking it again displays its existing assignment. Progress is saved in localStorage on that browser, not shared across devices. Download picks as a genuine `.xlsx` Excel workbook before changing computers or clearing browser data. The workbook includes player, horse, race number, barrier, trainer and jockey, with filters and a frozen header. New draw requires confirmation.
 
-Music uses an inline, visible YouTube player for Vevo’s **Feel Good Party Anthems**: https://www.youtube.com/playlist?list=PL9tY0BWXOZFvZwC6kZUw0iszAmAEXjZuN. This is a similar daytime-party mix, not the exact Spotify playlist. It includes popular vocal recordings and may contain explicit lyrics. Click Load party playlist, then Play in YouTube's controls. The player stays mounted when horses are revealed or a new draw starts. Playlist repeat is enabled. YouTube controls ads, sign-in requirements, embedding and regional availability; uninterrupted playback is not guaranteed. No media is downloaded or rehosted, and no YouTube connection is made until the user loads the player. Office-event music permissions remain the organiser's responsibility.
+**Sound on/off** plays three locally hosted instrumental funk-and-bossa tracks at 30% volume. Music starts off and requires a click, continues through reveals and new draws, and repeats the roughly 12-minute mix automatically. It has no video, ads or sign-in. A separate **Spotify ↗** link opens the organiser's **MELBOURNE CUP DAY TIME** playlist: https://open.spotify.com/playlist/5k1gqia7NHqCAN94ffYZSE. Opening Spotify pauses the in-game music; press Play in Spotify to use that playlist. These downloaded tracks are not recordings from Spotify. Office-event music permissions remain the organiser's responsibility.
+
+### Music attribution
+
+All three recordings are by **Kevin MacLeod (incompetech.com)**, licensed under **Creative Commons Attribution 4.0**, https://creativecommons.org/licenses/by/4.0/. Original MP3 downloads, unmodified; credits are also available in the game's “2026 field & credits” dialog.
+
+| Track         | Duration | Composer's source                                                       |
+| ------------- | -------- | ----------------------------------------------------------------------- |
+| Funky Chunk   | 3:59     | https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1500054 |
+| Funkorama     | 3:21     | https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100474 |
+| Bossa Antigua | 4:43     | https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1700069 |
 
 Full screen is offered on supported browsers. Keyboard buttons, native modal dialogs, visible focus, reduced-motion support and responsive layouts are included. Hidden horses are not placed in the accessibility tree until revealed; this is a casual game, not a tamper-resistant lottery (the data is available in the source).
 

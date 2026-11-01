@@ -21,13 +21,24 @@
         ><span>LA HACIENDA<small>CB NSW 30 CBD & East</small></span></a
       >
       <div class="top-actions">
-        <a
-          id="music-link"
+        <button
+          id="sound"
           class="quiet"
-          href="#music-panel"
-          aria-label="Go to the in-game YouTube music player"
+          aria-pressed="false"
+          aria-label="Toggle in-game background music"
+          title="Play the Hacienda mix · repeats automatically"
         >
-          ♪ <span>Party playlist</span></a
+          ♪ <span>Sound off</span>
+        </button>
+        <a
+          id="spotify"
+          class="quiet"
+          href="https://open.spotify.com/playlist/5k1gqia7NHqCAN94ffYZSE"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Open MELBOURNE CUP DAY TIME in Spotify (new tab); pause in-game music"
+        >
+          ♫ <span>Spotify ↗</span></a
         ><button id="fullscreen" class="quiet" aria-label="Toggle full screen">
           ⛶ <span>Full screen</span></button
         ><button
@@ -49,23 +60,6 @@
         </h1>
         <p>Welcome to La Hacienda. Pick a door. Meet your champion.</p>
         <div class="date">FLEMINGTON <b>✦</b> TUESDAY 3 NOVEMBER 2026</div>
-        <aside id="music-panel" aria-labelledby="music-title">
-          <div class="music-heading">
-            <span>♪ THE RACE-DAY SOUNDTRACK</span><span>↻ REPEATS</span>
-          </div>
-          <h2 id="music-title">Feel Good Party Anthems</h2>
-          <div id="music-player">
-            <button id="load-music" type="button">
-              <span class="music-play">▶</span
-              ><strong>Load party playlist</strong
-              ><span>Real songs. All on this screen.</span>
-            </button>
-          </div>
-          <p class="music-note">
-            Curated by Vevo · YouTube player<br />Press Play in the player. Ads
-            or video restrictions may apply.
-          </p>
-        </aside>
       </section>
       <section class="stable" aria-labelledby="stable-title">
         <div class="stable-toolbar">
@@ -148,7 +142,7 @@
     </dialog>
     <dialog id="info" class="info-dialog" aria-labelledby="info-title">
       <button class="close" data-close aria-label="Close information">×</button>
-      <div class="eyebrow small">WELCOME TO THE ESTABLO</div>
+      <div class="eyebrow small">WELCOME TO LA HACIENDA</div>
       <h2 id="info-title">A door to your next champion.</h2>
       <ol>
         <li>Add the player’s name, if you’d like to keep a record.</li>
@@ -163,12 +157,12 @@
       <p>
         Use one shared meeting-room screen. Picks stay on
         <strong>this browser only</strong>; they are not synced between devices.
-        Download your picks as an Excel workbook to keep a copy. Load the party
-        playlist, then press Play in the YouTube player on this page. Use its
-        controls to pause, adjust volume or skip tracks. Opening doors and
-        starting a new draw do not reload the player. The playlist repeats when
-        it ends. YouTube may show ads, request sign-in or restrict videos by
-        region. Some tracks may contain explicit lyrics.
+        Download your picks as an Excel workbook to keep a copy. Switch Sound on
+        for our downloaded funk-and-bossa background mix: no videos, ads or
+        sign-in. The three tracks repeat automatically and keep playing through
+        horse reveals and new draws. Sound starts off; your device controls the
+        volume. Prefer your own playlist? Spotify opens MELBOURNE CUP DAY TIME
+        separately and pauses the in-game music to avoid overlap.
       </p>
       <hr />
       <h3>The 2026 field</h3>
@@ -186,12 +180,44 @@
       >
       <p class="credits">
         Horse and estate images are original AI-generated decorative artwork,
-        not photographs of the named runners. Music is streamed through the
-        official YouTube player using Vevo’s “Feel Good Party Anthems” playlist,
-        not downloaded or hosted here. Loading the player connects to YouTube;
-        its terms and privacy policy apply. Excel workbooks are generated
+        not photographs of the named runners. Excel workbooks are generated
         locally using ExcelJS (MIT licensed). This is an independent office
         game, not affiliated with the VRC.
+      </p>
+      <h3>Hacienda soundtrack</h3>
+      <p class="credits">
+        <a
+          href="https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1500054"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Funky Chunk</a
+        >,
+        <a
+          href="https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100474"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Funkorama</a
+        >
+        and
+        <a
+          href="https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1700069"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Bossa Antigua</a
+        >
+        by Kevin MacLeod (<a
+          href="https://incompetech.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >incompetech.com</a
+        >). Licensed under
+        <a
+          href="https://creativecommons.org/licenses/by/4.0/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Creative Commons Attribution 4.0</a
+        >. Original MP3 recordings, unmodified. Instrumental background tracks,
+        not the songs from Spotify.
       </p>
     </dialog>
     <dialog
@@ -218,5 +244,6 @@
       aria-live="polite"
     ></div>
     <div id="confetti" aria-hidden="true"></div>
+    <audio id="background-music" preload="none"></audio>
   </body>
 </html>
