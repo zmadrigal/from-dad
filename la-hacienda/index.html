@@ -22,15 +22,12 @@
       >
       <div class="top-actions">
         <a
-          id="spotify"
+          id="music-link"
           class="quiet"
-          href="https://open.spotify.com/playlist/5k1gqia7NHqCAN94ffYZSE"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Open MELBOURNE CUP DAY TIME in Spotify (new tab)"
-          title="Play MELBOURNE CUP DAY TIME with your Spotify Premium account"
+          href="#music-panel"
+          aria-label="Go to the in-game YouTube music player"
         >
-          ♪ <span>Spotify playlist ↗</span></a
+          ♪ <span>Party playlist</span></a
         ><button id="fullscreen" class="quiet" aria-label="Toggle full screen">
           ⛶ <span>Full screen</span></button
         ><button
@@ -52,6 +49,23 @@
         </h1>
         <p>Welcome to La Hacienda. Pick a door. Meet your champion.</p>
         <div class="date">FLEMINGTON <b>✦</b> TUESDAY 3 NOVEMBER 2026</div>
+        <aside id="music-panel" aria-labelledby="music-title">
+          <div class="music-heading">
+            <span>♪ THE RACE-DAY SOUNDTRACK</span><span>↻ REPEATS</span>
+          </div>
+          <h2 id="music-title">Feel Good Party Anthems</h2>
+          <div id="music-player">
+            <button id="load-music" type="button">
+              <span class="music-play">▶</span
+              ><strong>Load party playlist</strong
+              ><span>Real songs. All on this screen.</span>
+            </button>
+          </div>
+          <p class="music-note">
+            Curated by Vevo · YouTube player<br />Press Play in the player. Ads
+            or video restrictions may apply.
+          </p>
+        </aside>
       </section>
       <section class="stable" aria-labelledby="stable-title">
         <div class="stable-toolbar">
@@ -149,11 +163,12 @@
       <p>
         Use one shared meeting-room screen. Picks stay on
         <strong>this browser only</strong>; they are not synced between devices.
-        Download your picks as an Excel workbook to keep a copy. Tap Spotify
-        playlist to open MELBOURNE CUP DAY TIME in a separate tab or the Spotify
-        app. Sign in to your Spotify Premium account and press Play there for
-        ad-free music. Return to the game while Spotify keeps playing; pause and
-        volume controls stay in Spotify.
+        Download your picks as an Excel workbook to keep a copy. Load the party
+        playlist, then press Play in the YouTube player on this page. Use its
+        controls to pause, adjust volume or skip tracks. Opening doors and
+        starting a new draw do not reload the player. The playlist repeats when
+        it ends. YouTube may show ads, request sign-in or restrict videos by
+        region. Some tracks may contain explicit lyrics.
       </p>
       <hr />
       <h3>The 2026 field</h3>
@@ -171,10 +186,12 @@
       >
       <p class="credits">
         Horse and estate images are original AI-generated decorative artwork,
-        not photographs of the named runners. Music plays separately through
-        Spotify; this game does not embed or host the playlist. Excel workbooks
-        are generated locally using ExcelJS (MIT licensed). This is an
-        independent office game, not affiliated with the VRC.
+        not photographs of the named runners. Music is streamed through the
+        official YouTube player using Vevo’s “Feel Good Party Anthems” playlist,
+        not downloaded or hosted here. Loading the player connects to YouTube;
+        its terms and privacy policy apply. Excel workbooks are generated
+        locally using ExcelJS (MIT licensed). This is an independent office
+        game, not affiliated with the VRC.
       </p>
     </dialog>
     <dialog

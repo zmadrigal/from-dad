@@ -140,9 +140,83 @@ button {
   margin-left: 7px;
 }
 .hero {
+  position: relative;
   text-align: center;
-  padding: 34px 20px 30px;
+  padding: 34px 420px 30px 20px;
+  min-height: 370px;
   text-shadow: 0 2px 18px #13291fcc;
+}
+#music-panel {
+  position: absolute;
+  right: 4%;
+  top: 20px;
+  width: 360px;
+  padding: 14px;
+  background: #142c25ed;
+  border: 1px solid #b49c6055;
+  border-radius: 8px;
+  text-align: left;
+  text-shadow: none;
+  scroll-margin-top: 16px;
+}
+.music-heading {
+  display: flex;
+  justify-content: space-between;
+  color: var(--gold);
+  font-size: 8px;
+  letter-spacing: 1px;
+}
+#music-title {
+  font:
+    500 23px "Cormorant Garamond",
+    Georgia,
+    serif;
+  margin: 8px 0 12px;
+}
+#music-player {
+  height: 210px;
+  background: #091a15;
+  border-radius: 4px;
+  overflow: hidden;
+}
+#music-player iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+#load-music {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #c5a46e55;
+  border-radius: 4px;
+  background: radial-gradient(ellipse at top, #365245, #10251f);
+}
+#load-music:hover {
+  background: #284638;
+}
+.music-play {
+  color: var(--gold);
+  font-size: 28px;
+}
+#load-music strong {
+  font-size: 13px;
+  font-weight: 500;
+}
+#load-music > span:last-child {
+  font-size: 10px;
+  color: var(--muted);
+}
+.hero .music-note {
+  font-size: 9px;
+  line-height: 1.6;
+  margin: 10px 0 0;
+  color: var(--muted);
 }
 .eyebrow {
   font-size: 10px;
@@ -829,6 +903,14 @@ dialog::backdrop {
   }
 }
 @media (max-width: 1100px) {
+  .hero {
+    padding: 30px 20px;
+  }
+  #music-panel {
+    position: static;
+    width: min(360px, 100%);
+    margin: 24px auto 0;
+  }
   .doors {
     grid-template-columns: repeat(6, minmax(0, 1fr));
   }
@@ -1065,7 +1147,8 @@ dialog::backdrop {
     padding-block: 12px;
   }
   :fullscreen .hero {
-    padding: 15px 20px;
+    padding: 40px 420px 15px 20px;
+    min-height: 360px;
   }
   :fullscreen .hero h1 {
     font-size: 38px;
@@ -1080,9 +1163,12 @@ dialog::backdrop {
   :fullscreen .hero .date {
     display: none;
   }
+  :fullscreen .hero .music-note {
+    display: block;
+  }
   :fullscreen .stall {
     aspect-ratio: auto;
-    height: clamp(105px, calc((100dvh - 390px) / 3), 215px);
+    height: clamp(105px, calc((100dvh - 690px) / 3), 215px);
   }
   :fullscreen footer {
     padding-block: 12px;

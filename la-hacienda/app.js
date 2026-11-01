@@ -2,6 +2,17 @@ import { horses, newDraw, validDraw, pick, picksWorkbook } from "./game.js";
 
 const $ = (selector) => document.querySelector(selector);
 const key = "la-hacienda-cup-2026-v1";
+$("#load-music").onclick = () => {
+  const iframe = document.createElement("iframe");
+  iframe.title = "Feel Good Party Anthems by Vevo — YouTube playlist";
+  iframe.src =
+    "https://www.youtube-nocookie.com/embed/videoseries?list=PL9tY0BWXOZFvZwC6kZUw0iszAmAEXjZuN&loop=1&playsinline=1&rel=0";
+  iframe.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+  iframe.allowFullscreen = true;
+  iframe.referrerPolicy = "strict-origin-when-cross-origin";
+  $("#music-player").replaceChildren(iframe);
+  iframe.focus();
+};
 let draw;
 let busy = false;
 try {
