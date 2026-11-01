@@ -116,6 +116,40 @@ button {
   gap: 9px;
   align-items: center;
 }
+.volume {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 10px;
+  color: var(--muted);
+}
+.volume input {
+  width: 85px;
+  height: 32px;
+  margin: 0;
+  accent-color: var(--gold);
+  cursor: pointer;
+}
+.volume input:focus-visible {
+  outline-offset: 1px;
+}
+.volume output {
+  min-width: 4ch;
+  font-variant-numeric: tabular-nums;
+  color: var(--gold);
+}
+@media (max-width: 1000px) {
+  .topbar {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+  }
+  .top-actions {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
 .quiet {
   background: #12281f66;
   border: 1px solid #d9c9a52b;
@@ -865,6 +899,13 @@ dialog::backdrop {
   }
   .top-actions .quiet span {
     display: none;
+  }
+  .volume {
+    order: 1;
+    flex-basis: 100%;
+  }
+  .volume input {
+    width: 140px;
   }
   .brand {
     font-size: 11px;

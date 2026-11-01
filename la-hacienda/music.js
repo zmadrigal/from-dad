@@ -5,10 +5,18 @@ const tracks = [
 ];
 const audio = document.querySelector("#background-music");
 const button = document.querySelector("#sound");
+const volume = document.querySelector("#volume");
 let index = 0;
 let requested = false;
 let unavailable = false;
-audio.volume = 0.3;
+audio.volume = Number(volume.value) / 100;
+
+volume.addEventListener("input", () => {
+  audio.volume = Number(volume.value) / 100;
+  const value = `${volume.value}%`;
+  document.querySelector("#volume-value").value = value;
+  volume.setAttribute("aria-valuetext", value);
+});
 
 function update() {
   button.setAttribute("aria-pressed", String(!audio.paused));

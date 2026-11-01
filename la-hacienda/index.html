@@ -30,6 +30,24 @@
         >
           ♪ <span>Sound off</span>
         </button>
+        <label
+          class="volume"
+          for="volume"
+          title="In-game music volume; Spotify has its own volume control"
+        >
+          Volume
+          <input
+            id="volume"
+            type="range"
+            min="0"
+            max="100"
+            step="1"
+            value="30"
+            aria-label="In-game music volume"
+            aria-valuetext="30%"
+          />
+          <output id="volume-value" for="volume">30%</output>
+        </label>
         <a
           id="spotify"
           class="quiet"
@@ -160,9 +178,11 @@
         Download your picks as an Excel workbook to keep a copy. Switch Sound on
         for our downloaded funk-and-bossa background mix: no videos, ads or
         sign-in. The three tracks repeat automatically and keep playing through
-        horse reveals and new draws. Sound starts off; your device controls the
-        volume. Prefer your own playlist? Spotify opens MELBOURNE CUP DAY TIME
-        separately and pauses the in-game music to avoid overlap.
+        horse reveals and new draws. Sound starts off; use the Volume slider to
+        adjust in-game music from silent (0%) to full volume (100%). It does not
+        change Spotify's volume. Prefer your own playlist? Spotify opens
+        MELBOURNE CUP DAY TIME separately and pauses the in-game music to avoid
+        overlap.
       </p>
       <hr />
       <h3>The 2026 field</h3>
