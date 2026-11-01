@@ -1,0 +1,13 @@
+{
+  "name": "la-hacienda-melbourne-cup",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "start": "python3 -m http.server 3000"
+  },
+  "devDependencies": {
+    "exceljs": "4.4.0"
+  }
+}

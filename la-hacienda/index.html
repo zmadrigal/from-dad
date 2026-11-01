@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#152c26" />
+    <meta
+      name="description"
+      content="A little mystery. A little luck. Pick your Melbourne Cup 2026 horse at La Hacienda — CB NSW 30 CBD & East."
+    />
+    <title>La Hacienda · Melbourne Cup 2026</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="style.css" />
+    <script type="module" src="app.js"></script>
+  </head>
+  <body>
+    <div class="scene" aria-hidden="true"></div>
+    <header class="topbar">
+      <a class="brand" href="./"
+        ><span class="brand-mark">♞</span
+        ><span>LA HACIENDA<small>CB NSW 30 CBD & East</small></span></a
+      >
+      <div class="top-actions">
+        <button
+          id="sound"
+          class="quiet"
+          aria-pressed="false"
+          aria-label="Toggle Hacienda music and reveal sounds"
+        >
+          ♪ <span>Music off</span></button
+        ><button id="fullscreen" class="quiet" aria-label="Toggle full screen">
+          ⛶ <span>Full screen</span></button
+        ><button
+          id="help"
+          class="quiet"
+          aria-label="How to play and field information"
+        >
+          ?
+        </button>
+      </div>
+    </header>
+    <main>
+      <section class="hero" aria-labelledby="title">
+        <div class="eyebrow">
+          <span></span> THE MELBOURNE CUP EDITION <span></span>
+        </div>
+        <h1 id="title">
+          A little mystery.<br /><em>A little racing luck.</em>
+        </h1>
+        <p>Welcome to the establo. Pick a door. Meet your champion.</p>
+        <div class="date">FLEMINGTON <b>✦</b> TUESDAY 3 NOVEMBER 2026</div>
+      </section>
+      <section class="stable" aria-labelledby="stable-title">
+        <div class="stable-toolbar">
+          <div>
+            <div class="eyebrow small">YOUR LUCK STARTS HERE</div>
+            <h2 id="stable-title">
+              The lucky stables <span>24 doors. One great race.</span>
+            </h2>
+          </div>
+          <div class="counter">
+            <span class="live-dot"></span
+            ><strong id="remaining">24</strong> horses waiting
+            <span class="divider"></span><span id="picked">0 / 24 picked</span>
+          </div>
+        </div>
+        <div class="playbar">
+          <label for="player"
+            ><span>WHO’S PICKING?</span
+            ><input
+              id="player"
+              maxlength="60"
+              placeholder="Player’s name (optional)"
+              autocomplete="off"
+          /></label>
+          <p>
+            <span>01</span> Add a name <i>→</i> <span>02</span> Choose a door
+            <i>→</i> <span>03</span> Cheer them home
+          </p>
+        </div>
+        <p id="storage-warning" class="warning" hidden>
+          This browser cannot save your draw. Keep this tab open and download
+          your picks before leaving.
+        </p>
+        <div id="doors" class="doors" aria-label="Numbered stable doors"></div>
+        <div id="completion" class="completion" hidden>
+          Every champion has a cheer squad. <em>Let the race begin!</em>
+        </div>
+        <div class="stable-bottom">
+          <span
+            >✦
+            <span id="save-status"
+              >Your draw is saved in this browser</span
+            ></span
+          >
+          <div>
+            <button id="download" class="text-button" disabled>
+              ↓ Download Excel</button
+            ><button id="reset" class="text-button">↻ New draw</button>
+          </div>
+        </div>
+      </section>
+      <footer>
+        <span>LA HACIENDA <b>·</b> MADE FOR A LITTLE OFFICE MAGIC</span
+        ><button id="field" class="text-button">2026 field & credits ↗</button
+        ><span>Just for fun. No bets, only bragging rights.</span>
+      </footer>
+    </main>
+    <dialog id="reveal" class="reveal-dialog" aria-labelledby="reveal-name">
+      <button class="close" data-close aria-label="Close horse reveal">
+        ×
+      </button>
+      <div class="reveal-art">
+        <img
+          src="assets/horse.webp"
+          alt="Decorative thoroughbred artwork"
+        /><span class="reveal-door" id="reveal-door"></span
+        ><span class="art-caption">ILLUSTRATIVE ARTWORK</span>
+      </div>
+      <div class="reveal-content">
+        <div class="eyebrow small">YOUR CHAMPION AWAITS</div>
+        <h2 id="reveal-name"></h2>
+        <p id="reveal-player"></p>
+        <div id="reveal-details" class="race-details"></div>
+        <p class="good-luck">Here’s to a photo finish.</p>
+        <button class="primary" data-close>
+          Back to the stables <span>→</span>
+        </button>
+      </div>
+    </dialog>
+    <dialog id="info" class="info-dialog" aria-labelledby="info-title">
+      <button class="close" data-close aria-label="Close information">×</button>
+      <div class="eyebrow small">WELCOME TO THE ESTABLO</div>
+      <h2 id="info-title">A door to your next champion.</h2>
+      <ol>
+        <li>Add the player’s name, if you’d like to keep a record.</li>
+        <li>Let them choose any closed door. Click to reveal their horse.</li>
+        <li>The door stays open. Continue until everyone has a horse!</li>
+      </ol>
+      <p>
+        Door numbers are <strong>randomly assigned</strong>, not saddlecloth
+        numbers or barriers. Reopening a revealed horse does not pick it again.
+        New draw clears the picks and reshuffles all horses.
+      </p>
+      <p>
+        Use one shared meeting-room screen. Picks stay on
+        <strong>this browser only</strong>; they are not synced between devices.
+        Download your picks as an Excel workbook to keep a copy. Tap Music to
+        play our original, gentle Hacienda theme and reveal sounds. Music starts
+        off so you can choose when the celebration begins.
+      </p>
+      <hr />
+      <h3>The 2026 field</h3>
+      <p>
+        24 final acceptances, published by the Victoria Racing Club on 31
+        October 2026. Checked 1 November 2026.
+        <strong>Late scratchings can still occur.</strong> Check the official
+        field before your office draw; this page does not update live.
+      </p>
+      <a
+        href="https://www.vrc.com.au/latest-news/lexus-melbourne-cup-field-and-barriers-announced-for-166th-running/"
+        target="_blank"
+        rel="noopener noreferrer"
+        >View the official VRC field ↗</a
+      >
+      <p class="credits">
+        Horse and estate images are original AI-generated decorative artwork,
+        not photographs of the named runners. “An Evening at La Hacienda” is an
+        original instrumental theme composed for this game. Excel workbooks are
+        generated locally using ExcelJS (MIT licensed). This is an independent
+        office game, not affiliated with the VRC.
+      </p>
+    </dialog>
+    <dialog
+      id="reset-dialog"
+      class="info-dialog reset-dialog"
+      aria-labelledby="reset-title"
+    >
+      <div class="eyebrow small">A FRESH START</div>
+      <h2 id="reset-title">A new roll of the horses?</h2>
+      <p>
+        This clears all player names and opened doors in this browser, then
+        reshuffles the 24 horses. Download your picks first if you want to keep
+        them.
+      </p>
+      <div class="dialog-actions">
+        <button class="quiet" data-close>Keep this draw</button
+        ><button id="confirm-reset" class="primary">Start a new draw</button>
+      </div>
+    </dialog>
+    <div
+      id="announcement"
+      class="sr-only"
+      role="status"
+      aria-live="polite"
+    ></div>
+    <div id="confetti" aria-hidden="true"></div>
+  </body>
+</html>
