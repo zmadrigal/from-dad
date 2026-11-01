@@ -2,13 +2,7 @@ import { horses, newDraw, validDraw, pick, picksWorkbook } from "./game.js";
 
 const $ = (selector) => document.querySelector(selector);
 const key = "la-hacienda-cup-2026-v1";
-const theme = new Audio("./assets/hacienda-theme.mp3");
-theme.loop = true;
-theme.volume = 0.3;
-theme.preload = "none";
 let draw;
-let sound = false;
-let audio;
 let busy = false;
 try {
   const saved = JSON.parse(localStorage.getItem(key));
@@ -72,29 +66,6 @@ function updateCount() {
   $("#player").disabled = count === 24;
 }
 
-function chime() {
-  if (!sound) return;
-  try {
-    audio ??= new AudioContext();
-    audio.resume();
-    [523.25, 659.25, 783.99, 1046.5].forEach((frequency, i) => {
-      const oscillator = audio.createOscillator();
-      const gain = audio.createGain();
-      oscillator.connect(gain);
-      gain.connect(audio.destination);
-      oscillator.frequency.value = frequency;
-      const time = audio.currentTime + i * 0.13;
-      gain.gain.setValueAtTime(0, time);
-      gain.gain.linearRampToValueAtTime(0.065, time + 0.02);
-      gain.gain.exponentialRampToValueAtTime(0.001, time + 0.8);
-      oscillator.start(time);
-      oscillator.stop(time + 0.8);
-    });
-  } catch {
-    /* The draw works even when audio is blocked. */
-  }
-}
-
 async function openDoor(index, door) {
   if (busy) return;
   const horse = horses[draw.order[index] - 1];
@@ -110,7 +81,6 @@ async function openDoor(index, door) {
     );
     $("#player").value = "";
     updateCount();
-    chime();
     await new Promise((resolve) =>
       setTimeout(
         resolve,
@@ -189,29 +159,6 @@ $("#confirm-reset").onclick = () => {
   $("#player").value = "";
   $("#reset-dialog").close();
   $("#announcement").textContent = "New draw. All 24 horses reshuffled.";
-};
-$("#sound").onclick = async () => {
-  const button = $("#sound");
-  button.disabled = true;
-  try {
-    if (sound) {
-      theme.pause();
-      sound = false;
-    } else {
-      await theme.play();
-      sound = true;
-    }
-    button.setAttribute("aria-pressed", String(sound));
-    $("#sound span").textContent = sound ? "Music on" : "Music off";
-  } catch {
-    sound = false;
-    button.setAttribute("aria-pressed", "false");
-    $("#sound span").textContent = "Retry music";
-    $("#announcement").textContent =
-      "Music could not play. Press Retry music to try again.";
-  } finally {
-    button.disabled = false;
-  }
 };
 $("#fullscreen").onclick = async () => {
   try {

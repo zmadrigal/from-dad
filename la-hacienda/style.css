@@ -128,6 +128,10 @@ button {
   background: #cda46320;
   border-color: #cda46388;
 }
+.top-actions a.quiet {
+  color: inherit;
+  text-decoration: none;
+}
 .top-actions #help {
   border-radius: 50%;
   width: 32px;
